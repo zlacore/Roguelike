@@ -34,9 +34,9 @@ function App() {
     console.log("Player:", player)
   }
 
-  const restore = (stat: string, amount: number) => {
+  // const restore = (stat: string, amount: number) => {
 
-  }
+  // }
 
   const createCharacter = () => {
    const newplayer = new Player(1, 0, 25, 20, 10, 10, 15, 25, 10, 20, 10, 10, 15, 25, [], 25, 15 )
