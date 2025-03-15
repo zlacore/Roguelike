@@ -8,3 +8,4 @@
 
 > Progress: Added functions to create character and roll scenarios, as well as changing the background.
 
+> CHANGE
