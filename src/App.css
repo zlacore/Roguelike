@@ -19,10 +19,10 @@ main {
   justify-content: center;
   align-items: center;
   border: 15px solid black
-
 }
 
-#gamescreen, #gamebg {
+#gamescreen,
+#gamebg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,6 +34,10 @@ main {
 }
 
 #gamebg {
+  max-height: 450px;
+}
+
+#gamebg {
   object-fit: cover;
 }
 
@@ -42,4 +46,15 @@ h1 {
   font-size: medium;
   max-width: 600px;
   object-fit: cover;
+}
+
+#encounterimg {
+  max-height: 150px;
+  max-width: 150px;
+  position: relative;
+  margin: 0;
+  margin-bottom: 0;
+  bottom: 260px;
+  left: 130px;
+  z-index: 4;
 }
