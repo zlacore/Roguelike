@@ -39,8 +39,8 @@ export class Enemy extends Character {
 }
 
 const Slime = new Enemy(1, 20, 30, 10, 12, 7, [], 50, './assets/sprites/characters/enemies/dungeonslime.png', 'Slime')
-
-export const enemies = {
-    slime: Slime,
-
-} 
+const Mimic = new Enemy(1, 40, 50, 20, 15, 7, [], 100, './assets/sprites/characters/enemies/mimic.png', 'Mimic')
+export const enemies = [
+    Slime,
+    Mimic,
+]
