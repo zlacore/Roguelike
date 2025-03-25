@@ -49,12 +49,30 @@ h1 {
 }
 
 #encounterimg {
-  max-height: 150px;
-  max-width: 150px;
+  height: 200px;
+  width: 200px;
   position: relative;
-  margin: 0;
+  margin: auto;
   margin-bottom: 0;
-  bottom: 260px;
-  left: 130px;
+  bottom: 325px;
+  left: 320px;
   z-index: 4;
+}
+
+#bottomhalf {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#acndiv {
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  max-height: 70px;
+  max-width: 150px;
+  justify-content: center;
+  align-items: center;
 }

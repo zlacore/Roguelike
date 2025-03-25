@@ -16,6 +16,9 @@ export const assets = {
 
         Objects: {
             Chest: './assets/sprites/objects/chest.png'
+        },
+        NPCS: {
+            HoodedMerchant: './assets/sprites/characters/npcs/hoodedmerchant.png'
         }
     },
     placeholder: './assets/placeholder.jpg'
