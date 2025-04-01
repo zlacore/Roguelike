@@ -17,12 +17,28 @@ export class Player extends Character {
     name: string
 
     constructor(
-        level: number, xp: number, levelUp: number,
-        baseHP: number, baseStr: number, baseDef: number, baseSpd: number, baseSta: number,
-        baseWit: number, health: number, strength: number, defense: number, agility: number,
-        gold: number, inventory: Item[], stamina: number, wit: number, sprite: string, name: string
+        name: string,
+        maxHealth: number, 
+        level: number, 
+        xp: number, 
+        levelUp: number,
+        baseHP: number, 
+        baseStr: number, 
+        baseDef: number, 
+        baseSpd: number, 
+        baseSta: number,
+        baseWit: number, 
+        health: number, 
+        strength: number, 
+        defense: number, 
+        agility: number,
+        gold: number, 
+        inventory: Item[], 
+        stamina: number, 
+        wit: number, 
+        sprite: string, 
     ) {
-        super(health, strength, defense, agility, sprite)
+        super(maxHealth, health, strength, defense, agility, sprite)
         this.level = level
         this.xp = xp
         this.levelUp = levelUp

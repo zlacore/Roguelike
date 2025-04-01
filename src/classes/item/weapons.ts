@@ -9,12 +9,12 @@ export class Weapon extends Item {
     }
 }
 
-export const Dagger = new Weapon ('Melee', 20, '', 'Dagger', 'A short dagger for quick stabs', 'Weapon', 10, 'Common', false)
+export const BasicSword = new Weapon ('Melee', 20, './assets/sprites/items/weapons/basicsword.png', 'Basic Sword', 'A basic sword for your adventure!', 'Weapon', 10, 'Common', false)
 export const weapons =
     {
         Melee: 
         {
-            Dagger,
+            BasicSword,
         }
         ,
         Ranged: {

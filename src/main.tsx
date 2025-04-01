@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { GameProvider } from './utils/gameContext.tsx'
+import { PlayerProvider } from './utils/playerContext.tsx'
 // import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // Pages
 // import { ErrorPage } from './pages/ErrorPage.tsx'
@@ -10,7 +12,7 @@ import { createRoot } from 'react-dom/client'
 // Routing to pages is not necessary at the moment.
 
 
-import './App.css'
+import './assets/App.css'
 import App from './App.tsx'
 
 // const router = createBrowserRouter([
@@ -35,6 +37,10 @@ import App from './App.tsx'
 // ]);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <GameProvider>
+      <PlayerProvider>
+        <App />
+      </PlayerProvider>
+    </GameProvider>
   </StrictMode>,
 )
