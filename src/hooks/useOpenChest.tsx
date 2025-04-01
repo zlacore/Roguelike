@@ -32,7 +32,7 @@ export const useOpenChest = () => {
             setNarration("That wasn't a chest! The mimic lunges at you!")
             setEncounterImg(hiddenEnemies.mimic.sprite)
             inBattle(true)
-            player.health -= 100
+            player.health -= 10
             savePlayer
         } else {
             saveItem(items.consumables.Potions.HealingPotionI)
