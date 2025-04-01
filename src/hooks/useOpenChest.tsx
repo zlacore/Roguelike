@@ -5,12 +5,13 @@ import { useSaveItem } from "./useSaveItem";
 import { useGetGold } from "./useGetGold";
 export const useOpenChest = () => {
     const {
-        setObject,
+        setIntObject,
         setEnemy,
         setEncounterImg,
         inBattle,
        items,
-        enemies
+        hiddenEnemies,
+        setNarration
     } = useGame()
 
     const {
@@ -26,11 +27,11 @@ export const useOpenChest = () => {
     const openChest = () => {
         const mimicChance = Math.random()
         if (mimicChance > .8) {
-            setObject('')
-            setEnemy(enemies.mimic)
-            setEncounterImg(enemies.mimic.sprite)
+            setIntObject(null)
+            setEnemy(hiddenEnemies.mimic)
+            setNarration("That wasn't a chest! The mimic lunges at you!")
+            setEncounterImg(hiddenEnemies.mimic.sprite)
             inBattle(true)
-            console.log('Mimic encountered!', enemies.mimic.sprite)
             player.health -= 100
             savePlayer
         } else {
@@ -38,7 +39,7 @@ export const useOpenChest = () => {
             const chestGold = Math.floor(Math.random() * 100)
             getGold(chestGold)
             rollScenario()
-            setObject('')
+            setIntObject(null)
         }
     }
     return { openChest }
