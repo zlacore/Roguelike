@@ -10,7 +10,7 @@ export class Potion extends Item {
             this.recovery = recovery
         }
 }
-export const HealingPotionI = new Potion('Heal', 10, '', 'Healing Potion I', 'A basic healing potion', 'Consumable', 10, 'Common', true)
+export const HealingPotionI = new Potion('Heal', 10, './assets/sprites/items/healingpotioni.png', 'Healing Potion I', 'A basic healing potion', 'Consumable', 10, 'Common', true)
 export const consumables = {
         Potions: {
             HealingPotionI
