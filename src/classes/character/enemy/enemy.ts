@@ -3,7 +3,6 @@ import Item from "../../item/item";
 export class Enemy extends Character {
     level: number
     baseXp: number
-    xpYield: number
     loot: Item[]
     gold: number
     name: string
@@ -12,35 +11,34 @@ export class Enemy extends Character {
         this.maxHealth = maxHealth
         this.level = level,
         this.baseXp = baseXp
-        this.xpYield = this.calculateXpYield()
         this.loot = loot
         this.gold = gold
         this.sprite = sprite
         this.name = name
     }
 
-    calculateXpYield () {
-        const xpYield = this.level * this.baseXp
-        return xpYield
-    }
+    // calculateXpYield () {
+    //     const xpYield = this.level * this.baseXp
+    //     return xpYield
+    // }
 
-    pickDrop () {
-        const randomDrop = this.loot[Math.floor(Math.random() * this.loot.length)]
-        return randomDrop
-    }
+    // pickDrop () {
+    //     const randomDrop = this.loot[Math.floor(Math.random() * this.loot.length)]
+    //     return randomDrop
+    // }
 
-    dropGold () {
-        return this.gold
-    }
+    // dropGold () {
+    //     return this.gold
+    // }
 
-    increaseLevel(playerLevel: number) {
-        this.level = playerLevel
-    }
+    // increaseLevel(playerLevel: number) {
+    //     this.level = playerLevel
+    // }
 
 }
 
 // Enemy stats to be balanced later
-export const Mimic = new Enemy(1, 1, 40, 50, 20, 15, 7, [], 100, './assets/sprites/characters/enemies/mimic.png', 'Mimic')
+export const Mimic = new Enemy(1, 1, 40, 50, 20, 15, 7, [], 100, './assets/sprites/characters/enemies/mimic2.png', 'Mimic')
 const Slime = new Enemy(1, 1, 20, 30, 10, 12, 7, [], 50, './assets/sprites/characters/enemies/dungeonslime.png', 'Slime')
 const Gargoyle = new Enemy(1, 1, 30, 30, 25, 35, 15, [], 60, './assets/sprites/characters/enemies/gargoyle.png', 'Gargoyle' )
 const Cryptwyrm = new Enemy(1, 1, 35, 40, 30, 15, 18, [], 50, './assets/sprites/characters/enemies/cryptwyrm.png', 'Cryptwyrm' )

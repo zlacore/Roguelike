@@ -36,6 +36,7 @@ main {
 }
 
 #gamebg {
+  position: relative;
   border: 5px solid black;
   max-height: 450px;
   max-width: 600px;
@@ -122,8 +123,8 @@ progress {
 }
 
 #enemyimg {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   margin: 0;
   padding: 0; 
 }
@@ -141,8 +142,8 @@ progress {
 }
 
 #objectimg {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   margin: 0;
   padding: 0; 
   position: relative;

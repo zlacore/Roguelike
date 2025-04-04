@@ -26,7 +26,7 @@ export const useOpenChest = () => {
 
     const openChest = () => {
         const mimicChance = Math.random()
-        if (mimicChance > .8) {
+        if (mimicChance > 0) {
             setIntObject(null)
             setEnemy(hiddenEnemies.mimic)
             setNarration("That wasn't a chest! The mimic lunges at you!")
