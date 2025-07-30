@@ -55,7 +55,7 @@ h1 {
   width: 200px;
   position: relative;
   margin: auto;
-  margin-bottom: 0;
+  margin-bottom: 0; 
   bottom: 325px;
   left: 150px;
   z-index: 4;
@@ -119,7 +119,7 @@ progress {
 
 #playerinfo {
   left: 50px;
-  top: 120px;
+  top: 30px;
 }
 
 #enemyimg {
@@ -127,11 +127,17 @@ progress {
   height: 200px;
   margin: 0;
   padding: 0; 
-}
-#enemyimg {
   position: relative;
   top: 250px;
   left: 350px;
+}
+
+#playerimg {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  padding: 0; 
 }
 
 #npcimg {
@@ -176,3 +182,14 @@ progress {
   max-height: 400px;
   max-width: 600px;
 } */
+
+game-content-area {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.continue-button {
+  margin-top: 20px; /* Pushes button to consistent position */
+}

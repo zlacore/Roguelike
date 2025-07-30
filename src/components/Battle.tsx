@@ -27,6 +27,7 @@ export const Battle = (props: BattleProps) => {
                     </label>
                     <progress className='healthbar' value={props.player.health}> 50 </progress>
                     <progress className='expbar' value={props.player.xp}></progress>
+                    <img id='playerimg' src='./assets/sprites/characters/playable/maincharbacksprite.png'></img>
                 </div>
             </div>
         </>

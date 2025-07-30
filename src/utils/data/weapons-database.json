@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Rusted Blade",
+    "type": "Melee",
+    "damage": 12,
+    "description": "An old, rusty sword forged long ago. Not ideal for combat, but better than nothing.",
+    "sellPrice": 5,
+    "rarity": "Common",
+    "stackable": false,
+    "sprite": "",
+    "itemType": "weapon"
+  },
+  {
+    "name": "Crooked Staff",
+    "type": "Magic",
+    "damage": 12,
+    "description": "A branch from a very old tree. It has strange carvings in it...",
+    "sellPrice": 5,
+    "rarity": "Common",
+    "stackable": false,
+    "sprite": "",
+    "itemType": "weapon"
+  },
+  {
+    "name": "Creaking Bow",
+    "type": "Ranged",
+    "damage": 12,
+    "description": "A worn out bow with a thinning string. It doesn't look like it will last much longer...",
+    "sellPrice": 5,
+    "rarity": "Common",
+    "stackable": false,
+    "sprite": "",
+    "itemType": "weapon"
+  }
+]
