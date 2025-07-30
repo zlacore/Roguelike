@@ -19,7 +19,7 @@ export class IntObj {
 
 const Chest = new IntObj(
     'Chest',
-    './assets/sprites/objects/chest.png',
+    './assets/sprites/objects/chest2.png',
     [
         items.consumables.Potions.HealingPotionI
     ]

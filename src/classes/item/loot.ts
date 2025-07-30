@@ -3,7 +3,7 @@
 // import { Potion } from "./consumables";
 
 
-// // Create various loot items from chest
-// export const chestLoot = [{
+// Create various loot items from chest
+export const chestLoot = [{
 
-// }]
+}]

@@ -60,15 +60,6 @@ export class Player extends Character {
         this.sprite = sprite
         this.name = name
     }
-
-    run() {
-
-    }
-
-    use() {
-
-    }
-
 }
 
 
