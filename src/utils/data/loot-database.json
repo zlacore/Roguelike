@@ -1,0 +1,8 @@
+[
+  {
+    "droppedFrom": "Mimic",
+    "name": "Mimic's Eye",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/drops/mimiceye.png"
+  }
+]

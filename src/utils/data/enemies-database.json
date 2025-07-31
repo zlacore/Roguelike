@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "name": "Mimic",
+    "health": 50,
+    "maxHealth": 50,
+    "strength": 10,
+    "defense": 15,
+    "agility": 5,
+    "sprite": "./assets/sprites/characters/enemies/mimic2.png",
+    "goldDrop": 50,
+    "description": "A creature that disguises itself as a chest. Be careful!",
+    "enemyType": "enemy"
+  }
+]

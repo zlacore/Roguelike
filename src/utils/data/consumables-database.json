@@ -1,1 +1,43 @@
-[]
+[
+  {
+    "name": "Smoke Bomb",
+    "type": "Throwable",
+    "effect": [
+      "blind",
+      3
+    ],
+    "description": "A smoke bomb used to reduce opponents' accuracy.",
+    "sellPrice": 20,
+    "rarity": "Uncommon",
+    "itemType": "consumable",
+    "stackable": true
+  },
+  {
+    "name": "Mana Potion I",
+    "type": "Potion",
+    "effect": [
+      "restoreMana",
+      25
+    ],
+    "description": "A basic mana potion. It tastes funny, but clears your head. Restores 25 mana.",
+    "sellPrice": 5,
+    "rarity": "Common",
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": ""
+  },
+  {
+    "name": "Healing Potion II",
+    "type": "Potion",
+    "effect": [
+      "restoreHealth",
+      40
+    ],
+    "description": "A bottle of sweet tasting liquid. Makes you feel rejuvenated. Restores 40 health.",
+    "sellPrice": 10,
+    "rarity": "Common",
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": ""
+  }
+]

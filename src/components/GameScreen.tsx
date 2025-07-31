@@ -6,6 +6,7 @@ import { IntObject } from "./InteractibleObject";
 import { NPC } from "./NPC";
 import { useRollScenario } from "../hooks/useScenario";
 import { useBattle } from "../hooks/useBattle";
+import { Consumable } from "../classes/item/consumables";
 export function GameScreen() {
   type BattleMenuState = 'main' | 'attack' | 'item'
   const [activeMenu, setActiveMenu] = useState<BattleMenuState>('main')
@@ -51,8 +52,7 @@ export function GameScreen() {
           <>
             {
               player.inventory.map((item, index) => {
-                return (
-
+                if (item instanceof Consumable) return (
                   <div key={index}>
                     <img src={item.sprite}></img>
                     <button onClick={() => useItem(item)}>
