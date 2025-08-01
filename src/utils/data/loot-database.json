@@ -4,5 +4,12 @@
     "name": "Mimic's Eye",
     "stackable": true,
     "sprite": "./assets/sprites/items/drops/mimiceye.png"
+  },
+  {
+    "droppedFrom": "Bloodvine",
+    "name": "Crimson Tentacle",
+    "stackable": true,
+    "description": "A bloody tendril taken from a slain bloodvine. It sometimes twitches on its own....",
+    "sprite": "./assets/sprites/items/drops/crimsontentacle.png"
   }
 ]

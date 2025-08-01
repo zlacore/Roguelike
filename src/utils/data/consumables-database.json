@@ -10,7 +10,8 @@
     "sellPrice": 20,
     "rarity": "Uncommon",
     "itemType": "consumable",
-    "stackable": true
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/smokebomb.png"
   },
   {
     "name": "Mana Potion I",
@@ -24,20 +25,33 @@
     "rarity": "Common",
     "itemType": "consumable",
     "stackable": true,
-    "sprite": ""
+    "sprite": "./assets/sprites/items/consumables/manapotion.png"
   },
   {
-    "name": "Healing Potion II",
+    "name": "Healing Potion",
     "type": "Potion",
     "effect": [
       "restoreHealth",
-      40
+      25
     ],
-    "description": "A bottle of sweet tasting liquid. Makes you feel rejuvenated. Restores 40 health.",
+    "description": "A bottle of sweet tasting liquid. Makes you feel rejuvenated. Restores 25 health.",
     "sellPrice": 10,
     "rarity": "Common",
     "itemType": "consumable",
     "stackable": true,
-    "sprite": ""
+    "sprite": "./assets/sprites/items/consumables/healingpotion.png"
+  },
+  {
+    "name": "Vigor Vial",
+    "type": "Potion",
+    "effect": "speedBoost",
+    "effectStrength": 20,
+    "effectDuration": 5,
+    "description": "A vial of liquid that makes your skin tingle. It makes you more alert and improves your reflexes. Increases speed by 20.",
+    "rarity": "Common",
+    "sellPrice": 10,
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/emptybottle.png"
   }
 ]

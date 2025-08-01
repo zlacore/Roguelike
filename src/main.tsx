@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { GameProvider } from './utils/gameContext.tsx'
 import { PlayerProvider } from './utils/playerContext.tsx'
 // import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// import { SpriteGallery } from './components/SpriteGallery.tsx'
 // Pages
 // import { ErrorPage } from './pages/ErrorPage.tsx'
 // import { Town } from './pages/Town.tsx'
@@ -21,17 +22,13 @@ import App from './App.tsx'
 //     element: <App />,
 //     errorElement: <ErrorPage />,
 //     children: [{
-//       path: '/town',
-//       element: <Town />
+//       path: '/gallery',
+//       element: <SpriteGallery/>
 //     },
-//     {
-//       path: '/dungeon',
-//       element: <Dungeon />
-//     },
-//     {
-//       path: '/shop',
-//       element: <Shop />
-//     }
+// //     {
+// //       path: '/shop',
+// //       element: <Shop />
+// //     }
 //     ]
 //   }
 // ]);
@@ -39,7 +36,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GameProvider>
       <PlayerProvider>
-        <App />
+        <App/>
       </PlayerProvider>
     </GameProvider>
   </StrictMode>,
