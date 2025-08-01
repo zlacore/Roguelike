@@ -5,6 +5,21 @@ import fs from 'fs'
 // import { Consumable } from '../classes/item/consumables'
 // import { IntObj} from '../classes/objects/object'
 // Create inquirer prompts to ask which thing to create
+function askToCreateAnother() {
+    inquirer
+        .prompt({
+            type: 'confirm',
+            message: 'Create another thing?',
+            name: 'createAnother'
+        })
+        .then((answer) => {
+            if (answer.createAnother) {
+                choosePrompts()
+            } else {
+                console.log('All done!')
+            }
+        })
+}
 
 function saveWeaponToDatabase(newWeapon) {
     const dbPath = './src/utils/data/weapons-database.json'
@@ -46,12 +61,41 @@ function saveEnemyToDatabase(newEnemy) {
     fs.writeFileSync(dbPath, JSON.stringify(enemies, null, 2));
     console.log(`✅ Enemy "${newEnemy.name}" added to database!`);
 }
-function choosePrompts() {
+
+function saveLootToDatabase(newLoot) {
+    const dbPath = './src/utils/data/loot-database.json';
+    let loot = [];
+
+    if (fs.existsSync(dbPath)) {
+        const data = fs.readFileSync(dbPath, 'utf8');
+        loot = JSON.parse(data);
+    }
+
+    loot.push(newLoot);
+    fs.writeFileSync(dbPath, JSON.stringify(loot, null, 2));
+    console.log(`✅ Loot "${newLoot.name}" added to database!`);
+}
+
+function saveEquipToDatabase(newEquip) {
+    const dbPath = './src/utils/data/equipables-database.json';
+    let equipables = [];
+
+    if (fs.existsSync(dbPath)) {
+        const data = fs.readFileSync(dbPath, 'utf8');
+        equipables = JSON.parse(data);
+    }
+
+    equipables.push(newEquip);
+    fs.writeFileSync(dbPath, JSON.stringify(equipables, null, 2));
+    console.log(`✅ Equipable "${newEquip.name}" added to database!`);
+}
+
+async function choosePrompts() {
     inquirer
         .prompt({
             type: 'list',
             message: 'What new thing would you like to create?',
-            choices: ['Weapon', 'Consumable', 'Equipable', 'Item', 'Enemy', 'Merchant', 'Object', 'Skill', 'Exit'],
+            choices: ['Weapon', 'Consumable', 'Equipable', 'EnemyLoot', 'Enemy', 'Merchant', 'Object', 'Skill', 'Exit'],
             name: 'thing'
         })
         .then((create) => {
@@ -59,59 +103,91 @@ function choosePrompts() {
                 inquirer
                     .prompt([
                         {
-                            type: "list",
-                            message: 'Weapon type?',
-                            choices: ['Melee', 'Magic', 'Ranged'],
-                            name: 'weaponType'
+                            type: 'input',
+                            message: 'What is this weapon called?',
+                            name: 'name'
+                        },
+                        {
+                            type: 'list',
+                            message: 'What type of weapon is it?',
+                            choices: ['Melee', 'Ranged', 'Magic'],
+                            name: 'type'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Base damage?',
+                            name: 'damage'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Minimum skill level required to use?',
+                            name: 'minSkillLevel',
+                            default: 1
                         },
                         {
                             type: 'input',
-                            message: 'Name?',
-                            name: 'weaponName'
+                            message: 'What is the weapon skill name? (e.g., "powerStrike", "lifesteal", "manaShield")',
+                            name: 'skillName'
+                        },
+                        {
+                            type: 'input',
+                            message: 'Describe what the skill does:',
+                            name: 'skillDescription'
+                        },
+                        {
+                            type: 'list',
+                            message: "What is the skill's effect?",
+                            choices: [
+                                'powerStrike',    // Extra damage attack
+                                'multiHit',       // Multiple attacks
+                                'armorPierce',
+                                'criticalStrike',
+                                'heal',           // Self healing
+                                'stun',           // Disable enemy
+                                'poison',         // DoT effect
+                                'burn',
+                                'slow',
+                                'blind',
+                                'critBoost',      // Temporary crit chance
+                                'damageShield',   // Absorb damage
+                                'manaRestore',    // Restore mana
+                                'lifesteal',      // Heal on damage
+                                'areaAttack'      // Hit multiple enemies
+                            ],
+                            name: 'skillEffect'
                         },
                         {
                             type: 'number',
-                            message: 'Damage?',
-                            name: 'weaponDamage'
+                            message: 'Skill base power/percentage? (e.g., 15 for 15% crit chance)',
+                            name: 'skillBasePower'
                         },
                         {
                             type: 'number',
-                            message: 'Critical strike chance',
-                            name: 'critChance',
+                            message: 'How much does skill improve per player level? (e.g., 5 for +5% per level)',
+                            name: 'skillScalingPerLevel',
                             default: 5
                         },
                         {
                             type: 'number',
-                            message: 'Strength bonus?',
-                            name: 'strengthBonus',
-                            default: 0
+                            message: 'What is the skill cooldown?',
+                            name: 'skillCooldown',
                         },
                         {
-                            type: 'number',
-                            message: 'Agility bonus?',
-                            name: 'agilityBonus',
-                            default: 0
-                        },
-                        {
-                            type: 'number',
-                            message: 'Defense bonus?',
-                            name: 'defenseBonus',
-                            default: 0
-                        },
-                        {
-                            type: 'input',
-                            message: 'Special effect (optional)?',
-                            name: 'specialEffect'
-                        },
-                        {
-                            type: 'input',
-                            message: 'Sprite?',
-                            name: 'weaponSprite'
+                            type: 'confirm',
+                            message: 'Does this weapon have a passive effect?',
+                            name: 'hasPassive',
+                            default: false
                         },
                         {
                             type: 'input',
                             message: 'Description?',
-                            name: 'weaponDesc'
+                            name: 'description'
+                        },
+                        {
+                            type: 'list',
+                            message: 'Rarity?',
+                            choices: ['Poor', 'Common', 'Uncommon', 'Rare', 'Legendary'],
+                            name: 'rarity'
                         },
                         {
                             type: 'number',
@@ -119,112 +195,302 @@ function choosePrompts() {
                             name: 'sellPrice'
                         },
                         {
+                            type: 'input',
+                            message: 'Sprite path?',
+                            name: 'sprite',
+                            default: ''
+                        },
+                        {
+                            type: 'confirm',
+                            message: 'Does this weapon give stat bonuses?',
+                            name: 'hasStats',
+                            default: false
+                        }
+                    ])
+                    .then((weapon) => {
+                        let passivePromise = Promise.resolve({})
+                        let statsPromise = Promise.resolve({});
+                        if (weapon.hasPassive) {
+                            passivePromise = inquirer.prompt([
+                                {
+                                    type: 'list',
+                                    message: 'Passive effect type?',
+                                    choices: ['lifesteal', 'critbonus', 'manaOnKill', 'poison', 'burn', 'stun'],
+                                    name: 'type'
+                                },
+                                {
+                                    type: 'input',
+                                    message: 'Passive power/percentage?',
+                                    name: 'power'
+                                },
+                            ])
+                        }
+
+                        if (weapon.hasStats) {
+                            statsPromise = inquirer.prompt([
+                                {
+                                    type: 'number',
+                                    message: 'Strength bonus?',
+                                    name: 'strength',
+                                    default: 0
+                                },
+                                {
+                                    type: 'number',
+                                    message: 'Agility bonus?',
+                                    name: 'agility',
+                                    default: 0
+                                },
+                                {
+                                    type: 'number',
+                                    message: 'Defense bonus?',
+                                    name: 'defense',
+                                    default: 0
+                                },
+                                {
+                                    type: 'number',
+                                    message: 'Wit bonus?',
+                                    name: 'wit',
+                                    default: 0
+                                }
+                            ]);
+                        }
+
+
+                        return Promise.all([statsPromise, passivePromise]).then(([stats, passive]) => {
+
+                            if (weapon.sprite === '') {
+                                if (weapon.type === 'Magic') {
+                                    weapon.sprite = './assets/sprites/items/weapons/crookedstaff.png'
+                                } else if (weapon.type === 'Melee') {
+                                    weapon.sprite = './assets/sprites/items/weapons/rustedblade.png'
+                                } else if (weapon.type === 'Ranged') {
+                                    weapon.sprite = './assets/sprites/items/weapons/creakingbow.png'
+                                }
+                            }
+                            const newWeapon = {
+                                name: weapon.name,
+                                type: weapon.type,
+                                damage: weapon.damage,
+                                minSkillLevel: weapon.minSkillLevel,
+                                skill: {
+                                    name: weapon.skillName,
+                                    effect: weapon.skillEffect,
+                                    basePower: weapon.skillBasePower,
+                                    scalingPerLevel: weapon.skillScalingPerLevel,
+                                    cooldown: weapon.skillCooldown,
+                                    description: weapon.skillDescription,
+                                },
+                                description: weapon.description,
+                                rarity: weapon.rarity,
+                                sellPrice: weapon.sellPrice,
+                                stackable: false,
+                                sprite: weapon.sprite,
+                                itemType: 'weapon'
+                            };
+                            if (weapon.hasPassive) {
+                                newWeapon.passiveEffect = {
+                                    type: passive.type,
+                                    power: passive.power,
+                                }
+
+                            }
+
+                            if (weapon.hasStats) {
+                                newWeapon.stats = stats;
+                            }
+
+
+                            saveWeaponToDatabase(newWeapon);
+                            askToCreateAnother();
+                        });
+                    });
+            } else if (create.thing === 'Consumable') {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            message: 'Consumable name?',
+                            name: 'consumableName'
+                        },
+                        {
                             type: 'list',
-                            message: 'rarity?',
+                            message: 'Consumable type?',
+                            choices: ['Potion', 'Throwable', 'Other'],
+                            name: 'consumableType'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is its effect?',
+                            name: 'effect'
+                        },
+                        {
+                            type: 'number',
+                            message: 'How much does the effect add/subtract from stats?',
+                            name: 'effectStrength'
+                        },
+                        {
+                            type: 'number',
+                            message: 'How many turns does the effect last?',
+                            name: 'effectDuration',
+                            default: 0 // Instant effect
+                        },
+                        {
+                            type: 'input',
+                            message: 'Description?',
+                            name: 'description'
+                        },
+                        {
+                            type: 'list',
+                            message: 'Rarity?',
                             choices: ['Common', 'Uncommon', 'Rare', 'Legendary'],
                             name: 'rarity'
                         },
                         {
-                            type: 'confirm',
-                            message: 'Stackable?',
-                            name: 'stackable'
+                            type: 'number',
+                            message: 'Sell price?',
+                            name: 'sellPrice'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is its sprite?',
+                            name: 'sprite',
+                            default: './assets/sprites/items/potions/emptybottle.png'
                         }
-
                     ])
                     .then((answers) => {
-                        const newWeapon = {
-                            name: answers.weaponName,
-                            type: answers.weaponType,
-                            damage: answers.weaponDamage,
-                            description: answers.weaponDesc,
-                            sellPrice: answers.sellPrice,
+                        const newConsumable = {
+                            name: answers.consumableName,
+                            type: answers.consumableType,
+                            effect: answers.effect,
+                            effectStrength: answers.effectStrength,
+                            effectDuration: answers.effectDuration,
+                            description: answers.description,
                             rarity: answers.rarity,
-                            stackable: answers.stackable,
-                            sprite: answers.weaponSprite,
-                            itemType: 'weapon',
+                            sellPrice: answers.sellPrice,
+                            itemType: 'consumable',
+                            stackable: true,
+                            sprite: answers.sprite
+                        };
 
-                            stats: {
-                                strength: answers.strengthBonus || 0,
-                                agility: answers.agilityBonus || 0,
-                                defense: answers.defenseBonus || 0
-                            },
+                        saveConsumableToDatabase(newConsumable);
+                        askToCreateAnother()
 
-                            effects: {
-                                critChance: answers.critChance || 5,
-                                specialEffect: answers.specialEffect || null
-                            }
-                        }
-                        console.log(newWeapon)
-                        saveWeaponToDatabase(newWeapon)
                     })
-            } else if (create.thing === 'Consumable') {
-                inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: 'Consumable name?',
-                name: 'consumableName'
-            },
-            {
-                type: 'list',
-                message: 'Consumable type?',
-                choices: ['Health Potion', 'Mana Potion', 'Buff Potion', 'Food', 'Other'],
-                name: 'consumableType'
-            },
-            {
-                type: 'number',
-                message: 'Healing amount (0 if not healing)?',
-                name: 'healAmount',
-                default: 0
-            },
-            {
-                type: 'number',
-                message: 'Mana restore (0 if not mana)?',
-                name: 'manaAmount',
-                default: 0
-            },
-            {
-                type: 'input',
-                message: 'Special effect?',
-                name: 'effect'
-            },
-            {
-                type: 'input',
-                message: 'Description?',
-                name: 'description'
-            },
-            {
-                type: 'number',
-                message: 'Sell price?',
-                name: 'sellPrice'
-            },
-            {
-                type: 'list',
-                message: 'Rarity?',
-                choices: ['Common', 'Uncommon', 'Rare', 'Legendary'],
-                name: 'rarity'
-            }
-        ])
-        .then((answers) => {
-            const newConsumable = {
-                name: answers.consumableName,
-                type: answers.consumableType,
-                healAmount: answers.healAmount,
-                manaAmount: answers.manaAmount,
-                effect: answers.effect,
-                description: answers.description,
-                sellPrice: answers.sellPrice,
-                rarity: answers.rarity,
-                itemType: 'consumable',
-                stackable: true
-            };
-            
-            saveConsumableToDatabase(newConsumable);
-        })
             } else if (create.thing === 'Equipable') {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            message: 'What kind of equipable is it?',
+                            choices: ['Helmet', 'Chestplate', 'Leggings', 'Charm'],
+                            name: 'type'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is this equipable called?',
+                            name: 'name'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Health boost?',
+                            name: 'hpBoost'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Strength boost?',
+                            name: 'strBoost'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Agility boost?',
+                            name: 'agiBoost'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Defense boost?',
+                            name: 'defBoost'
+                        },
+                        {
+                            type: 'number',
+                            message: 'Wit boost?',
+                            name: 'witBoost'
+                        },
+                        {
+                            type: 'input',
+                            message: 'Description?',
+                            name: 'description'
+                        },
+                        {
+                            type: 'list',
+                            message: 'Rarity?',
+                            choices: ['Common', 'Uncommon', 'Rare', 'Legendary'],
+                            name: 'rarity',
+                        },
+                        {
+                            type: 'number',
+                            message: 'Sell price?',
+                            name: 'sellPrice'
+                        },
+                        {
+                            type: 'input',
+                            message: 'Sprite?',
+                            name: 'sprite'
+                        }
+                    ])
+                    .then((equip) => {
+                        const newEquip = {
+                            type: equip.type,
+                            name: equip.name,
+                            hp: equip.hpBoost,
+                            str: equip.strBoost,
+                            def: equip.defBoost,
+                            agi: equip.agiBoost,
+                            wit: equip.witBoost,
+                            description: equip.description,
+                            rarity: equip.rarity,
+                            sellPrice: equip.sellPrice,
+                            sprite: equip.sprite
+                        }
+                        saveEquipToDatabase(newEquip)
+                        askToCreateAnother()
+                    })
 
-            } else if (create.thing === 'Item') {
+            } else if (create.thing === 'EnemyLoot') {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            message: 'What drops it?',
+                            name: 'droppedFrom'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is it called?',
+                            name: 'lootName'
+                        },
+                        {
+                            type: 'input',
+                            message: 'Description?',
+                            name: 'description',
+                        },
+                        {
+                            type: 'input',
+                            message: 'Sprite?',
+                            name: 'sprite'
+                        }
+                    ])
+                    .then((loot) => {
+                        const newLoot = {
+                            droppedFrom: loot.droppedFrom,
+                            name: loot.lootName,
+                            stackable: true,
+                            description: loot.description,
+                            sprite: loot.sprite
+                        }
 
+                        saveLootToDatabase(newLoot)
+                        askToCreateAnother()
+                    })
             } else if (create.thing === 'Enemy') {
                 inquirer
                     .prompt([
@@ -265,6 +531,11 @@ function choosePrompts() {
                         },
                         {
                             type: 'input',
+                            message: 'Item drop?',
+                            name: 'itemDrop',
+                        },
+                        {
+                            type: 'input',
                             message: 'Description?',
                             name: 'description'
                         }
@@ -277,37 +548,26 @@ function choosePrompts() {
                             strength: answers.strength,
                             defense: answers.defense,
                             agility: answers.agility,
-                            sprite: answers.sprite,
                             goldDrop: answers.goldDrop,
+                            itemDrop: answers.itemDrop,
                             description: answers.description,
-                            enemyType: 'enemy'
+                            sprite: answers.sprite,
                         };
 
                         saveEnemyToDatabase(newEnemy);
+                        askToCreateAnother()
+
                     })
             } else if (create.thing === 'Merchant') {
-
+                return
             } else if (create.thing === 'Object') {
-
+                return
             } else if (create.thing === 'Skill') {
-
+                return
             } else if (create.thing === 'Exit') {
                 console.log('Goodbye!')
                 return
             }
-            inquirer
-                .prompt({
-                    type: 'confirm',
-                    message: 'Create another thing?',
-                    name: 'createAnother'
-                })
-                .then((answer) => {
-                    if (answer.createAnother) {
-                        choosePrompts()
-                    } else {
-                        console.log('All done!')
-                    }
-                })
         })
 }
 

@@ -1,35 +1,62 @@
 [
   {
-    "name": "Rusted Blade",
-    "type": "Melee",
-    "damage": 12,
-    "description": "An old, rusty sword forged long ago. Not ideal for combat, but better than nothing.",
+    "name": "Crooked Staff",
+    "type": "Magic",
+    "damage": 8,
+    "minSkillLevel": 1,
+    "skill": {
+      "name": "Nature's Blessing",
+      "effect": "heal",
+      "basePower": 20,
+      "scalingPerLevel": 5,
+      "cooldown": 3,
+      "description": "Heals the player"
+    },
+    "description": "A crooked branch from a tree felled long ago, fashioned into a staff. You can feel a faint life force emanating from it, even now...",
+    "rarity": "Poor",
     "sellPrice": 5,
-    "rarity": "Common",
     "stackable": false,
-    "sprite": "",
+    "sprite": "./assets/sprites/items/weapons/crookedstaff.png",
     "itemType": "weapon"
   },
   {
-    "name": "Crooked Staff",
-    "type": "Magic",
-    "damage": 12,
-    "description": "A branch from a very old tree. It has strange carvings in it...",
+    "name": "Rusted Blade",
+    "type": "Melee",
+    "damage": 8,
+    "minSkillLevel": 1,
+    "skill": {
+      "name": "Desperate Strike",
+      "effect": "powerStrike",
+      "basePower": 20,
+      "scalingPerLevel": 5,
+      "cooldown": 3,
+      "description": "Attack the opponent with everything you have!"
+    },
+    "description": "An old, rusted blade that was forged long ago. It has seen many battles...",
+    "rarity": "Poor",
     "sellPrice": 5,
-    "rarity": "Common",
     "stackable": false,
-    "sprite": "",
+    "sprite": "./assets/sprites/items/weapons/rustedblade.png",
     "itemType": "weapon"
   },
   {
     "name": "Creaking Bow",
     "type": "Ranged",
-    "damage": 12,
-    "description": "A worn out bow with a thinning string. It doesn't look like it will last much longer...",
+    "damage": 8,
+    "minSkillLevel": 1,
+    "skill": {
+      "name": "Piercing Shot",
+      "effect": "armorPierce",
+      "basePower": 5,
+      "scalingPerLevel": 5,
+      "cooldown": 3,
+      "description": "Ignores a portion of enemy defense"
+    },
+    "description": "An old bow fashioned out of oak. It has many grooves from years of use. ",
+    "rarity": "Poor",
     "sellPrice": 5,
-    "rarity": "Common",
     "stackable": false,
-    "sprite": "",
+    "sprite": "./assets/sprites/items/weapons/creakingbow.png",
     "itemType": "weapon"
   }
 ]

@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "type": "Charm",
+    "name": "Pendant of Fortune",
+    "hp": 20,
+    "str": 0,
+    "def": 10,
+    "agi": 0,
+    "wit": 10,
+    "description": "A pendant made with the eye of a mimic. Increases loot yield upon killing enemies or opening chests.",
+    "rarity": "Rare",
+    "sellPrice": 30,
+    "sprite": ""
+  }
+]

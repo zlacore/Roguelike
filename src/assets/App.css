@@ -33,6 +33,8 @@ main {
   width: 600px;
   min-height: 400px;
   z-index: 3;
+  margin-right:  auto;
+  margin-left: auto;
 }
 
 #gamebg {
@@ -182,14 +184,24 @@ progress {
   max-height: 400px;
   max-width: 600px;
 } */
+#sprite-gallery {
+  position: absolute;
+  bottom: 50px;
+}
 
-game-content-area {
+
+.gallerybtn {
+  position: absolute;
+  bottom: 100px;
+}
+/* #game-content-area {
   min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
+} */
 
 .continue-button {
   margin-top: 20px; /* Pushes button to consistent position */
 }
+

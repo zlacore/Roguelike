@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "name": "Smoke Bomb",
+    "type": "Throwable",
+    "effect": [
+      "blind",
+      3
+    ],
+    "description": "A smoke bomb used to reduce opponents' accuracy.",
+    "sellPrice": 20,
+    "rarity": "Uncommon",
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/smokebomb.png"
+  },
+  {
+    "name": "Mana Potion I",
+    "type": "Potion",
+    "effect": [
+      "restoreMana",
+      25
+    ],
+    "description": "A basic mana potion. It tastes funny, but clears your head. Restores 25 mana.",
+    "sellPrice": 5,
+    "rarity": "Common",
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/manapotion.png"
+  },
+  {
+    "name": "Healing Potion",
+    "type": "Potion",
+    "effect": [
+      "restoreHealth",
+      25
+    ],
+    "description": "A bottle of sweet tasting liquid. Makes you feel rejuvenated. Restores 25 health.",
+    "sellPrice": 10,
+    "rarity": "Common",
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/healingpotion.png"
+  },
+  {
+    "name": "Vigor Vial",
+    "type": "Potion",
+    "effect": "speedBoost",
+    "effectStrength": 20,
+    "effectDuration": 5,
+    "description": "A vial of liquid that makes your skin tingle. It makes you more alert and improves your reflexes. Increases speed by 20.",
+    "rarity": "Common",
+    "sellPrice": 10,
+    "itemType": "consumable",
+    "stackable": true,
+    "sprite": "./assets/sprites/items/consumables/emptybottle.png"
+  }
+]
