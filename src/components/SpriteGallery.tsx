@@ -9,7 +9,7 @@ import WeaponsData from '../utils/data/weapons-database.json'
 import ConsumablesData from '../utils/data/consumables-database.json'
 import EquipablesData from '../utils/data/equipables-database.json'
 import EnemiesData from '../utils/data/enemies-database.json'
-import LootData from '../utils/data/enemyloot-database.json'
+import LootData from '../utils/data/loot-database.json'
 
 
 export const SpriteGallery = () => {

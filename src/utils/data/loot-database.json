@@ -1,15 +1,37 @@
 [
   {
-    "droppedFrom": "Mimic",
-    "name": "Mimic's Eye",
-    "stackable": true,
-    "sprite": "./assets/sprites/items/drops/mimiceye.png"
-  },
-  {
-    "droppedFrom": "Bloodvine",
     "name": "Crimson Tentacle",
+    "droppedFrom": "Bloodvine",
     "stackable": true,
     "description": "A bloody tendril taken from a slain bloodvine. It sometimes twitches on its own....",
     "sprite": "./assets/sprites/items/drops/crimsontentacle.png"
+  },
+  {
+    "name": "Mimic's Eye",
+    "droppedFrom": "Mimic",
+    "stackable": true,
+    "description": "The eye of a slain mimic",
+    "sprite": "./assets/sprites/items/drops/mimiceye.png"
+  },
+  {
+    "name": "Slimy Core",
+    "droppedFrom": "Slime",
+    "stackable": true,
+    "description": "The oozing core of a slime.",
+    "sprite": "./assets/sprites/items/drops/slimeooze.png"
+  },
+  {
+    "name": "Cryptwyrm Fang",
+    "droppedFrom": "Cryptwyrm",
+    "stackable": true,
+    "description": "A fang pried from the mouth of a Cryptwyrm.",
+    "sprite": "./assets/sprites/items/drops/cryptwyrmfang.png"
+  },
+  {
+    "name": "Mossy Horn",
+    "droppedFrom": "Gargoyle",
+    "stackable": true,
+    "description": "A horn that has broken off of a gargoyle. It's tougher than normal stone.",
+    "sprite": "./assets/sprites/items/drops/mossyhorn.png"
   }
 ]

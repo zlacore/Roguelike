@@ -2,7 +2,7 @@
 import { intObjects } from "../classes/objects/object";
 import { useGame } from "../utils/gameContext";
 import { merchants } from "../classes/character/npc/merchant"
-import { enemies } from "../utils/gameData";
+import enemies  from "../utils/data/enemies-database.json";
 export const useRollScenario = () => {
   const {
     setEnemy, setIntObject, setMerchant,

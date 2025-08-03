@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { Dispatch, SetStateAction } from 'react'
-import { Enemy } from "../classes/character/enemy/enemy";
+// import { Enemy } from "../classes/character/enemy/enemy";
 import { Merchant } from "../classes/character/npc/merchant";
 import { IntObj } from "../classes/objects/object";
 const GameContext = createContext<GameContextType | null>(null)
@@ -20,8 +20,8 @@ export interface GameContextType {
     setBtnText: Dispatch<SetStateAction<string>>;
 
     // Current encounters (keep these since they change)
-    enemy: Enemy | null;
-    setEnemy: Dispatch<SetStateAction<Enemy | null>>;
+    enemy: any | null;
+    setEnemy: Dispatch<SetStateAction<{} | null>>;
     battle: boolean;
     setBattle: Dispatch<SetStateAction<boolean>>; // Fix naming
     merchant: Merchant | null;
@@ -40,7 +40,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Current encounters
     const [battle, setBattle] = useState<boolean>(false); // Fixed naming
-    const [enemy, setEnemy] = useState<Enemy | null>(null);
+    const [enemy, setEnemy] = useState<{} | null>(null);
     const [merchant, setMerchant] = useState<Merchant | null>(null);
     const [intObject, setIntObject] = useState<IntObj | null>(null);
     return (<GameContext.Provider
