@@ -1,0 +1,37 @@
+[
+  {
+    "type": "Chest",
+    "name": "Wooden Chest",
+    "tier": "wood",
+    "description": "An old wooden chest. It has remained sturdy throughout the years.",
+    "sprite": "./assets/sprites/objects/woodchest.png"
+  },
+  {
+    "type": "Chest",
+    "name": "Copper Chest",
+    "tier": "copper",
+    "description": "A weathered copper chest.",
+    "sprite": "./assets/sprites/objects/copperchest.png"
+  },
+  {
+    "type": "Chest",
+    "name": "Iron Chest",
+    "tier": "iron",
+    "description": "A sturdy iron chest. It is dented in some places.",
+    "sprite": "./assets/sprites/objects/ironchest.png"
+  },
+  {
+    "type": "Chest",
+    "name": "Silver Chest",
+    "tier": "silver",
+    "description": "An ornate silver chest. It gleams in the torchlight.",
+    "sprite": "./assets/sprites/objects/silverchest.png"
+  },
+  {
+    "type": "Chest",
+    "name": "Golden Chest",
+    "tier": "gold",
+    "description": "A gilded chest. Even in the darkest dungeon, it shines brightly.",
+    "sprite": "./assets/sprites/objects/goldchest.png"
+  }
+]

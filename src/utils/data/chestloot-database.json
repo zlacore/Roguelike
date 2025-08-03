@@ -1,0 +1,42 @@
+{
+    "wooden": {
+        "items": [
+                {
+                    "name": "Health Potion",
+                    "effect": "heal",
+                    "basePower": 30
+                },
+                {
+                    "name": "Bread",
+                    "effect": "heal",
+                    "basePower": 15
+                },
+                {
+                    "name": "Small Gold Pouch",
+                    "effect": "gold",
+                    "basePower": 20
+                }
+        ]
+    },
+    "copper": {
+        "items": [
+             { "name": "Greater Health Potion", "effect": "heal", "basePower": 60 },
+            { "name": "Strength Elixir", "effect": "buffStrength", "basePower": 3 },
+            { "name": "Medium Gold Pouch", "effect": "gold", "basePower": 75 }
+        ]
+    },
+    "iron": {
+        "items": [
+             { "name": "Superior Health Potion", "effect": "heal", "basePower": 120 },
+            { "name": "Berserker Brew", "effect": "buffStrength", "basePower": 5 },
+            { "name": "Large Gold Pouch", "effect": "gold", "basePower": 200 }
+        ]
+    },
+    "golden": {
+        "items": [
+            { "name": "Elixir of Life", "effect": "fullHeal", "basePower": 100 },
+            { "name": "Dragon's Strength", "effect": "buffStrength", "basePower": 10 },
+            { "name": "Treasure Hoard", "effect": "gold", "basePower": 500 }
+        ]
+    }
+}

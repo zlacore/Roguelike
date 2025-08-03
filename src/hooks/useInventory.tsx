@@ -21,7 +21,7 @@ export const useInventory = () => {
 
   const removeItem = (itemIndex: number) => {
     if (!player) return;
-    const newInventory = player.inventory.filter((_, index) => index !== itemIndex);
+    const newInventory = player.inventory.filter((_: any, index: any) => index !== itemIndex);
     setPlayer({
       ...player,
       inventory: newInventory
