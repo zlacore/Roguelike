@@ -10,6 +10,7 @@ export const IntObject = () => {
         // TODO: Write logic to open chest
         // If it is a chest, add random chest loot item to player's inventory
         // If it is a mimic, enter battle with mimic
+
     }
     const handleInteraction = () => {
         if (intObject?.name === 'Chest') {

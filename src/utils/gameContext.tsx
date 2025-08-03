@@ -1,8 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { Dispatch, SetStateAction } from 'react'
-// import { Enemy } from "../classes/character/enemy/enemy";
 import { Merchant } from "../classes/character/npc/merchant";
-import { IntObj } from "../classes/objects/object";
 const GameContext = createContext<GameContextType | null>(null)
 export interface GameContextType {
     // Core game flow
@@ -26,8 +24,8 @@ export interface GameContextType {
     setBattle: Dispatch<SetStateAction<boolean>>; // Fix naming
     merchant: Merchant | null;
     setMerchant: Dispatch<SetStateAction<Merchant | null>>;
-    intObject: IntObj | null;
-    setIntObject: Dispatch<SetStateAction<IntObj | null>>;
+    intObject: any | null;
+    setIntObject: Dispatch<SetStateAction<{} | null>>;
 }
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     const [scene, setScene] = useState('town');
@@ -42,7 +40,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     const [battle, setBattle] = useState<boolean>(false); // Fixed naming
     const [enemy, setEnemy] = useState<{} | null>(null);
     const [merchant, setMerchant] = useState<Merchant | null>(null);
-    const [intObject, setIntObject] = useState<IntObj | null>(null);
+    const [intObject, setIntObject] = useState<{} | null>(null);
     return (<GameContext.Provider
         value={{
             scene, setScene,

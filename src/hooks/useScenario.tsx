@@ -1,15 +1,18 @@
 
 import { intObjects } from "../classes/objects/object";
 import { useGame } from "../utils/gameContext";
+import { useBattle } from "./useBattle";
 import { merchants } from "../classes/character/npc/merchant"
-import enemies  from "../utils/data/enemies-database.json";
+import { enemies } from "../utils/gameData";
 export const useRollScenario = () => {
   const {
     setEnemy, setIntObject, setMerchant,
     setBattle, // ✅ Fixed function name
     setNarration
   } = useGame();
-
+  const {
+    startBattle
+  } = useBattle()
   const rollScenario = () => {
     const rollChance = Math.random();
 
@@ -25,7 +28,7 @@ export const useRollScenario = () => {
       const monsterArray = Object.values(enemies);
       const randomMonster = monsterArray[Math.floor(Math.random() * monsterArray.length)];
       setEnemy(randomMonster);
-      setBattle(true); // ✅ Fixed
+      startBattle()
       setNarration(`Venturing into the dungeon, you encounter a ${randomMonster.name}!`);
       
     } else if (rollChance >= .75 && rollChance < .875) {

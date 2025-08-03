@@ -62,6 +62,20 @@ function saveEnemyToDatabase(newEnemy) {
     console.log(`✅ Enemy "${newEnemy.name}" added to database!`);
 }
 
+function saveObjectToDatabase(newObject) {
+    const dbPath = './src/utils/data/object-database.json';
+    let objects = [];
+
+    if (fs.existsSync(dbPath)) {
+        const data = fs.readFileSync(dbPath, 'utf8');
+        objects = JSON.parse(data);
+    }
+
+    objects.push(newObject);
+    fs.writeFileSync(dbPath, JSON.stringify(objects, null, 2));
+    console.log(`✅ Object "${newObject.name}" added to database!`);
+}
+
 function saveLootToDatabase(newLoot) {
     const dbPath = './src/utils/data/loot-database.json';
     let loot = [];
@@ -531,11 +545,6 @@ async function choosePrompts() {
                         },
                         {
                             type: 'input',
-                            message: 'Item drop?',
-                            name: 'itemDrop',
-                        },
-                        {
-                            type: 'input',
                             message: 'Description?',
                             name: 'description'
                         }
@@ -549,7 +558,7 @@ async function choosePrompts() {
                             defense: answers.defense,
                             agility: answers.agility,
                             goldDrop: answers.goldDrop,
-                            itemDrop: answers.itemDrop,
+                            drops: [],
                             description: answers.description,
                             sprite: answers.sprite,
                         };
@@ -561,9 +570,63 @@ async function choosePrompts() {
             } else if (create.thing === 'Merchant') {
                 return
             } else if (create.thing === 'Object') {
-                return
-            } else if (create.thing === 'Skill') {
-                return
+                inquirer
+                    .prompt([
+
+                        // Input which object type it is
+                        {
+                            type: 'list',
+                            message: 'What object type is it?',
+                            choices: ['Chest', 'Rest'],
+                            name: 'type'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is it called?',
+                            name: 'name'
+                        },
+                        {
+                            type: 'list',
+                            message: 'What is its tier? Rest tier affects stats. Chest tier affects loot.',
+                            choices: ['wood', 'copper', 'iron', 'silver', 'gold'],
+                            name: 'objectTier'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is its description?',
+                            name: 'description'
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is its sprite?',
+                            name: 'sprite',
+                            default: ''
+                        }
+                    ])
+                    .then((object) => {
+
+                        if (object.sprite === '') object.sprite = './assets/sprites/objects/woodchest.png'
+
+                        if (object.type === 'Chest') {
+                            if (object.objectTier === 'wooden') object.sprite = './assets/sprites/objects/woodchest.png'
+                            else if (object.objectTier === 'copper') object.sprite = './assets/sprites/objects/copperchest.png'
+                            else if (object.objectTier === 'iron') object.sprite = './assets/sprites/objects/ironchest.png'
+                            else if (object.objectTier === 'silver') object.sprite = './assets/sprites/objects/silverchest.png'
+                            else if (object.objectTier === 'gold') object.sprite = './assets/sprites/objects/goldchest.png'
+                        }
+
+
+                        const newObject = {
+                            type: object.type,
+                            name: object.name,
+                            tier: object.objectTier,
+                            description: object.description,
+                            sprite : object.sprite,
+                        }
+
+                        saveObjectToDatabase(newObject)
+                        askToCreateAnother()
+                    })
             } else if (create.thing === 'Exit') {
                 console.log('Goodbye!')
                 return
@@ -571,4 +634,4 @@ async function choosePrompts() {
         })
 }
 
-choosePrompts()
+choosePrompts() 

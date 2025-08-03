@@ -1,6 +1,8 @@
 
 import { usePlayer } from "../utils/playerContext";
 import { useGame } from "../utils/gameContext";
+import { useInventory } from "./useInventory";
+import enemyDropList from "../utils/data/loot-database.json"
 // import { Player } from "../classes/character/player/players";
 // import { Enemy } from "../classes/character/enemy/enemy";
 // import { Weapon } from "../classes/item/weapons";
@@ -9,19 +11,58 @@ import { useGame } from "../utils/gameContext";
 export const useBattle = () => {
   const { enemy, setEnemy, setNarration, setBattle } = useGame();
   const { player, setPlayer } = usePlayer();
+  const { addItem, addGold } = useInventory()
+  const enemyDrops = enemyDropList.filter((item) => item.droppedFrom === enemy.name)
+  const startBattle = () => {
+    setBattle(true)
+    setEnemy({ ...enemy, drops: enemyDrops })
+  }
+
+  const endBattle = () => {
+    setBattle(false)
+
+    // Generate a random amount of gold depending on the enemy's baseGoldDrop stat
+    // Enemy will never drop below 25% of its base gold drop.
+    const goldDrop = Math.floor(enemy.baseGoldDrop * (0.25 + Math.random() * 0.75))
+
+    addGold(goldDrop)
+
+    // Get random items from enemy drops
+    const droppedItems: any = []
+    const targetDropCount = Math.max(1, Math.floor(Math.random() * 5))
+    let attempts = 0
+    const maxAttempts = 100 // Prevent infinite loops
+
+    while (droppedItems.length < targetDropCount && attempts < maxAttempts) {
+      attempts++
+
+      const randomDrop = enemy.drops[Math.floor(Math.random() * enemy.drops.length)]
+
+      if (Math.random() < randomDrop.chance) {
+        const currentCount = droppedItems.filter((item: any) => item.name === randomDrop.name).length
+        if (currentCount < randomDrop.maxDrop) { // Filter max drops to not exceed limit
+          droppedItems.push(randomDrop)
+        }
+      }
+    }
+
+    for (const drop of droppedItems) {
+      addItem(drop)
+    }
+
+    setEnemy(null)
+  }
+
 
   const flee = () => {
-
     if (player.agility > enemy?.agility!) {
-      setEnemy(null)
-      setBattle(false)
+      endBattle()
       setNarration('You successfully fled the battle!')
     } else {
       const successChance = Math.random();
       if (successChance > 0.5) {
         setNarration("You successfully fled the battle!");
-        setEnemy(null); // End the battle
-        setBattle(false)
+        endBattle()
         console.log(enemy)
       } else {
         setNarration("You failed to flee!");
@@ -115,8 +156,7 @@ export const useBattle = () => {
       setNarration(`You desperately punch for ${damage} damage!`)
       if (newEnemyHealth <= 0) {
         setNarration(`You defeated the ${enemy.name}!`);
-        setEnemy(null);
-        setBattle(false);
+        endBattle()
       }
 
     } else {
@@ -170,8 +210,7 @@ export const useBattle = () => {
 
       if (newEnemyHealth <= 0) {
         setNarration(`You defeated the ${enemy.name}!`);
-        setEnemy(null);
-        setBattle(false);
+        endBattle()
       }
     };
   }
@@ -188,10 +227,10 @@ export const useBattle = () => {
 
     if (newPlayerHealth <= 0) {
       setNarration("You died!");
-      setBattle(false);
+      endBattle();
     }
   };
-  return { determineTurnOrder, playerAttack, enemyAttack, flee, useItem };
+  return { startBattle, endBattle, determineTurnOrder, playerAttack, enemyAttack, flee, useItem };
 }
 
 
