@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { Player } from '../classes/character/player/players';
+// import { Player } from '../classes/character/player/players';
 // import { useGame } from './gameContext';
 // import { useCreateCharacter } from '../hooks/useCreatePlayer';
 // import Item from '../classes/item/item'
@@ -28,10 +28,10 @@ import { Player } from '../classes/character/player/players';
 // }
 
 interface PlayerContextType {
-    player: Player;
-    setPlayer: React.Dispatch<React.SetStateAction<Player>>
-    savePlayer: () => void;
-    createCharacter: () => void;
+  player: any;
+  setPlayer: React.Dispatch<React.SetStateAction<{}>>
+  savePlayer: () => void;
+  createCharacter: () => void;
 }
 
 const PlayerContext = createContext<PlayerContextType | null>(null)
@@ -39,17 +39,35 @@ const PlayerContext = createContext<PlayerContextType | null>(null)
 export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
   // const {started} = useGame()
   const createCharacter = () => {
-    const newPlayer = new Player('Test', 1, 0, 25, 20, 10, 10, 15, 25, 10, 20, 10, 10, 15, 10, 25, [], 15, 10, 'Player')
+    const newPlayer = {
+      name: "Hero",
+      health: 100,
+      maxHealth: 100,
+      strength: 8,
+      agility: 8,
+      defense: 8,
+      wit: 8,
+      level: 1,
+      xp: 0,
+      gold: 0,
+      inventory: [],
+      equippedWeapon: null,
+      offHandItem: null,
+      currentSkillCooldown: 0,
+      status: null, // for future status effects
+      sprite: "./assets/sprites/characters/playable/mainchar.png"
+
+    }
     // const saveNewPlayer = localStorage.setItem('player', JSON.stringify(newplayer))
     // const getNewPlayer = localStorage.getItem('player')
     setPlayer(newPlayer)
     console.log('Character Created!', player)
-  }    
+  }
   // const {createCharacter} = useCreateCharacter()
-  const [player, setPlayer] = useState<Player>(() => {
+  const [player, setPlayer] = useState(() => {
     const savedPlayer = localStorage.getItem("player");
     console.log(savedPlayer)
-      return savedPlayer ? JSON.parse(savedPlayer) : null
+    return savedPlayer ? JSON.parse(savedPlayer) : null
     // {
     //   name: "Hero",
     //   health: 100,

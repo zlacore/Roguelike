@@ -192,7 +192,7 @@ progress {
 
 .gallerybtn {
   position: absolute;
-  bottom: 100px;
+  bottom: -40px;
 }
 /* #game-content-area {
   min-height: 400px;
